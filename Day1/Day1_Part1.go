@@ -20,12 +20,12 @@ func part1() {
 
 	for _, v := range split[0:] {
 		i := strings.Split(v, "  ")
-		leftInt, err := strconv.ParseFloat(strings.TrimSpace(i[0]), 64)
+		leftFloat, err := strconv.ParseFloat(strings.TrimSpace(i[0]), 64)
 		Error.Check(err)
-		rightInt, err := strconv.ParseFloat(strings.TrimSpace(i[1]), 64)
+		rightFloat, err := strconv.ParseFloat(strings.TrimSpace(i[1]), 64)
 		Error.Check(err)
-		left = append(left, leftInt)
-		right = append(right, rightInt)
+		left = append(left, leftFloat)
+		right = append(right, rightFloat)
 	}
 	fmt.Printf("left:%v, right:%v\n", left, right)
 	sort.Float64s(left)
