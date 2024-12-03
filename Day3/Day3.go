@@ -40,24 +40,23 @@ func part2() {
 	Error.Check(err)
 
 	valid := ""
-	for 1 != 2 {
-		if strings.Index(toString, "don't()") == -1 {
+	DONT := "don't()"
+	DO := "do()"
+	for {
+		if strings.Index(toString, DONT) == -1 {
 			valid += toString
 			break
 		}
-		valid += toString[:strings.Index(toString, "don't()")]
-		if strings.Index(toString, "don't()") == -1 {
+		valid += toString[:strings.Index(toString, DONT)]
+		toString = toString[strings.Index(toString, DONT)+7:]
+		if strings.Index(toString, DO) == -1 {
 			break
 		}
-		toString = toString[strings.Index(toString, "don't()")+7:]
-		if strings.Index(toString, "do()") == -1 {
-			break
-		}
-		toString = toString[strings.Index(toString, "do()")+4:]
+		toString = toString[strings.Index(toString, DO)+4:]
 	}
 	fmt.Println(valid)
 	toString = valid
-	var regex = `mul\([0-9][0-9]?[0-9]?\,[0-9][0-9]?[0-9]?\)`
+	regex := `mul\([0-9][0-9]?[0-9]?\,[0-9][0-9]?[0-9]?\)`
 	compile, err := regexp.Compile(regex)
 	Error.Check(err)
 	allString := compile.FindAllString(toString, -1)
@@ -71,8 +70,3 @@ func part2() {
 	}
 	fmt.Println(total)
 }
-
-//Get Location of First "Don't()"
-//Store String up to that line as valid mul
-//From the dont find the next do() and remove up until that point
-//repeat until end of string
