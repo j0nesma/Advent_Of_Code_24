@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strings"
 
-	"Advent_Of_Code_24/Error"
 	"Advent_Of_Code_24/FileReader"
 )
 
@@ -40,8 +38,7 @@ var (
 )
 
 func main() {
-	content, err := FileReader.ReadFileToString("./Day4/input.txt")
-	Error.Check(err)
+	content := FileReader.ReadFileToArray("./Day4/input.txt")
 
 	grid := createGrid(content)
 
@@ -49,8 +46,7 @@ func main() {
 	fmt.Println(findCrossingWords(grid, MAS))
 }
 
-func createGrid(content string) [][]rune {
-	rows := strings.Split(content, "\n")
+func createGrid(rows []string) [][]rune {
 	grid := make([][]rune, len(rows))
 	for i, row := range rows {
 		grid[i] = []rune(row)
